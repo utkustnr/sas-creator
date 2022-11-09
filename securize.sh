@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Usage:
-#bash lite-adapter.sh <32|64> [/path/to/system/image]
+#bash securize.sh [/path/to/system/image]
 
 #cleanups
 umount d
@@ -16,7 +16,7 @@ if [ -f "$1" ];then
 fi
 
 if [ ! -f "$srcFile" ];then
-	echo "Usage: sudo bash securize.sh <32|64> [/path/to/system.img]"
+	echo "Usage: sudo bash securize.sh [/path/to/system.img]"
 	exit 1
 fi
 
@@ -25,7 +25,7 @@ simg2img "$srcFile" s-secure.img || cp "$srcFile" s-secure.img
 rm -Rf tmp
 mkdir -p d tmp
 e2fsck -y -f s-secure.img
-resize2fs s-secure.img 3500M
+resize2fs s-secure.img 5000M
 e2fsck -E unshare_blocks -y -f s-secure.img
 mount -o loop,rw s-secure.img d
 
@@ -37,6 +37,12 @@ rm d/system/bin/phh-securize.sh
 rm -Rf d/system/{app,priv-app}/me.phh.superuser/
 
 sleep 1
+
+if [ ! -z "$2" ]; then
+echo "Script is finished and paused until you unpause it."
+echo "Feel free to edit filesystem by going into sas-creator/d folder"
+read -p "Press any key to finalize... "
+fi
 
 umount d
 

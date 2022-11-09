@@ -69,6 +69,12 @@ xattr -w security.selinux u:object_r:firmware_file:s0 firmware/radio
 )
 sleep 1
 
+if [ ! -z "$3" ]; then
+echo "Script is finished and paused until you unpause it."
+echo "Feel free to edit filesystem by going into sas-creator/d folder"
+read -p "Press any key to finalize... "
+fi
+
 umount d
 
 e2fsck -f -y s.img || true
