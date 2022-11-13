@@ -39,9 +39,31 @@ rm -Rf d/system/{app,priv-app}/me.phh.superuser/
 sleep 1
 
 if [ ! -z "$2" ]; then
-echo "Script is finished and paused until you unpause it."
-echo "Feel free to edit filesystem by going into sas-creator/d folder"
-read -p "Press any key to finalize... "
+    rm -rf d/system/product/overlay/treble-overlay-infinix-*
+    rm -rf d/system/product/overlay/treble-overlay-lenovo-*
+    rm -rf d/system/product/overlay/treble-overlay-lge-*
+    rm -rf d/system/product/overlay/treble-overlay-asus-*
+    rm -rf d/system/product/overlay/treble-overlay-xiaomi-*
+    rm -rf d/system/product/overlay/treble-overlay-samsung-*
+    rm -rf d/system/product/overlay/treble-overlay-sony-*    
+    rm -rf d/system/product/overlay/treble-overlay-tecno-*
+    rm -rf d/system/product/overlay/treble-overlay-realme-*
+    rm -rf d/system/product/overlay/treble-overlay-oppo-*
+    rm -rf d/system/product/overlay/treble-overlay-nokia-*
+    rm -rf d/system/product/overlay/treble-overlay-oneplus-* 
+    rm -rf d/system/product/overlay/treble-overlay-nubia-*       
+    rm -rf d/system/product/overlay/treble-overlay-moto-*    
+    rm -rf d/system/product/overlay/treble-overlay-lg-*
+    rm -rf d/system/product/overlay/treble-overlay-htc-*
+    rm -rf d/system/product/overlay/treble-overlay-blackview-*
+    rm -rf d/system/product/overlay/treble-overlay-vivo-*
+    rm -rf d/system/product/overlay/treble-overlay-vsmart-*
+    rm -rf d/system/product/overlay/treble-overlay-razer-*
+    rm -rf d/system/product/overlay/treble-overlay-sharp-*
+	rm -rf d/system/system_ext/apex/com.android.vndk.v32
+	rm -rf d/system/system_ext/apex/com.android.vndk.v31
+	rm -rf d/system/system_ext/apex/com.android.vndk.v30
+	rm -rf d/system/system_ext/apex/com.android.vndk.v29
 fi
 
 umount d
