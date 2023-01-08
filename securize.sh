@@ -29,42 +29,48 @@ resize2fs s-secure.img 5000M
 e2fsck -E unshare_blocks -y -f s-secure.img
 mount -o loop,rw s-secure.img d
 
+mkdir -p d/system/phh
 touch d/system/phh/secure
-rm d/system/xbin/su
-rm d/system/bin/phh-su
-rm d/system/etc/init/su.rc
-rm d/system/bin/phh-securize.sh
-rm -Rf d/system/{app,priv-app}/me.phh.superuser/
+rm d/system/xbin/su || true
+rm d/system/bin/phh-su || true
+rm d/system/etc/init/su.rc || true
+rm d/system/bin/phh-securize.sh || true
+rm -Rf d/system/{app,priv-app}/me.phh.superuser/ || true
 
 sleep 1
 
-if [ ! -z "$2" ]; then
-    rm -rf d/system/product/overlay/treble-overlay-infinix-*
-    rm -rf d/system/product/overlay/treble-overlay-lenovo-*
-    rm -rf d/system/product/overlay/treble-overlay-lge-*
-    rm -rf d/system/product/overlay/treble-overlay-asus-*
-    rm -rf d/system/product/overlay/treble-overlay-xiaomi-*
-    rm -rf d/system/product/overlay/treble-overlay-samsung-*
-    rm -rf d/system/product/overlay/treble-overlay-sony-*    
-    rm -rf d/system/product/overlay/treble-overlay-tecno-*
-    rm -rf d/system/product/overlay/treble-overlay-realme-*
-    rm -rf d/system/product/overlay/treble-overlay-oppo-*
-    rm -rf d/system/product/overlay/treble-overlay-nokia-*
-    rm -rf d/system/product/overlay/treble-overlay-oneplus-* 
-    rm -rf d/system/product/overlay/treble-overlay-nubia-*       
-    rm -rf d/system/product/overlay/treble-overlay-moto-*    
-    rm -rf d/system/product/overlay/treble-overlay-lg-*
-    rm -rf d/system/product/overlay/treble-overlay-htc-*
-    rm -rf d/system/product/overlay/treble-overlay-blackview-*
-    rm -rf d/system/product/overlay/treble-overlay-vivo-*
-    rm -rf d/system/product/overlay/treble-overlay-vsmart-*
-    rm -rf d/system/product/overlay/treble-overlay-razer-*
-    rm -rf d/system/product/overlay/treble-overlay-sharp-*
-	rm -rf d/system/system_ext/apex/com.android.vndk.v32
-	rm -rf d/system/system_ext/apex/com.android.vndk.v31
-	rm -rf d/system/system_ext/apex/com.android.vndk.v30
-	rm -rf d/system/system_ext/apex/com.android.vndk.v29
+if [ $2 = "huawei" ]; then
+    rm -rf d/system/product/overlay/treble-overlay-infinix-* || true
+    rm -rf d/system/product/overlay/treble-overlay-lenovo-* || true
+    rm -rf d/system/product/overlay/treble-overlay-lge-* || true
+    rm -rf d/system/product/overlay/treble-overlay-asus-* || true
+    rm -rf d/system/product/overlay/treble-overlay-xiaomi-* || true
+    rm -rf d/system/product/overlay/treble-overlay-samsung-* || true
+    rm -rf d/system/product/overlay/treble-overlay-sony-* || true
+    rm -rf d/system/product/overlay/treble-overlay-tecno-* || true
+    rm -rf d/system/product/overlay/treble-overlay-realme-* || true
+    rm -rf d/system/product/overlay/treble-overlay-oppo-* || true
+    rm -rf d/system/product/overlay/treble-overlay-nokia-* || true
+    rm -rf d/system/product/overlay/treble-overlay-oneplus-* || true
+    rm -rf d/system/product/overlay/treble-overlay-nubia-* || true
+    rm -rf d/system/product/overlay/treble-overlay-moto-* || true
+    rm -rf d/system/product/overlay/treble-overlay-lg-* || true
+    rm -rf d/system/product/overlay/treble-overlay-htc-* || true
+    rm -rf d/system/product/overlay/treble-overlay-blackview-* || true
+    rm -rf d/system/product/overlay/treble-overlay-vivo-* || true
+    rm -rf d/system/product/overlay/treble-overlay-vsmart-* || true
+    rm -rf d/system/product/overlay/treble-overlay-razer-* || true
+    rm -rf d/system/product/overlay/treble-overlay-sharp-* || true
 fi
+
+if [ $3 = "28" ]; then
+    rm -rf d/system/system_ext/apex/com.android.vndk.v32 || true
+    rm -rf d/system/system_ext/apex/com.android.vndk.v31 || true
+    rm -rf d/system/system_ext/apex/com.android.vndk.v30 || true
+    rm -rf d/system/system_ext/apex/com.android.vndk.v29 || true
+fi
+
+sleep 1
 
 umount d
 
